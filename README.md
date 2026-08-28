@@ -2,6 +2,19 @@
 
 两级式主题管理器（DeepSeek Harness Web 插件）：**先选文化 / 场景，再选具体风格**。
 
+English: [README.en.md](README.en.md)
+
+![主题管理器预览](assets/preview-zh.jpg)
+
+## 功能
+
+- **两级选择 UI**：设置 → 主题管理器（`settings.section` 新页面），左侧第一层列表 + 右侧第二层风格卡片（含配色色卡预览）。
+- **实时生效**：每套风格通过 `theme` 服务 `register()` 注册为真正的主题（`--dsw-alias-*` token 覆盖），点「使用」立即切换，无需刷新；同时也会出现在「设置 → 外观」行的额外色块中。
+- **选择记忆**：当前风格保存在本浏览器 localStorage（`dsh.themeManager.active`），刷新/重开自动恢复；在「外观」行切回内置浅色 / 深色 / 跟随系统时自动清除。
+- **中英双语**：文案跟随界面语言（`locale` 服务，zh / en）。
+
+## 内置风格
+
 当前内置 **20 套风格**（浅色底 13 套 · 深色底 7 套）：
 
 | 第一层 | 第二层 | 配色意象 |
@@ -29,34 +42,70 @@
 
 > 🌙 = 深色底版（`colorScheme: "dark"`）；其余为浅色底版。
 
-## 功能
+## 安装
 
-- **两级选择 UI**：设置 → 主题管理器（`settings.section` 新页面），左侧第一层列表 + 右侧第二层风格卡片（含配色色卡预览）。
-- **实时生效**：每套风格通过 `theme` 服务 `register()` 注册为真正的主题（`--dsw-alias-*` token 覆盖），点「使用」立即切换，无需刷新；同时也会出现在「设置 → 外观」行的额外色块中。
-- **选择记忆**：当前风格保存在本浏览器 localStorage（`dsh.themeManager.active`），刷新/重开自动恢复；在「外观」行切回内置浅色 / 深色 / 跟随系统时自动清除。
-- **中英双语**：文案跟随界面语言（`locale` 服务，zh / en）。
+要求：`dsh web 0.1.0-rc.6` 或更新版本。
 
-## 安装（开发期，link 方式）
+### 方式一：从 GitHub 直接安装（推荐）
 
-在 `~/.dsh/profiles/web` 下：
-
-```jsonc
-// package.json
-"dependencies": {
-  "dsh-theme-manager": "link:D:/workspace_deepseek_harness2/secondary_development/dsh-theme-manager"
-},
-"dsh": {
-  "profile": {
-    "bundles": [ /* …原有… */, "dsh-theme-manager" ]
-  }
-}
-```
+`dsh plugin` 会把依赖装进 profile 并自动加入 `dsh.profile.bundles`，无需手动改配置：
 
 ```sh
-pnpm install
+dsh plugin --profile web add github:runcat-tommy/dsh-theme-manager
 ```
 
-重启 `dsh web` 后打开 **设置 → 主题管理器**。
+或使用完整 git 地址：
+
+```sh
+dsh plugin --profile web add https://github.com/runcat-tommy/dsh-theme-manager.git
+```
+
+安装完成后**重启 `dsh web`**，打开 **设置 → 主题管理器** 即可使用。
+
+> 没有装 pnpm 时，先装 pnpm：`npm i -g pnpm`（`dsh plugin` 依赖 pnpm）。
+
+### 方式二：npm 安装（发布到 npm 后可用）
+
+```sh
+dsh plugin --profile web add dsh-theme-manager
+```
+
+同样重启 `dsh web` 生效。
+
+### 方式三：下载源码手动安装（开发 / 调试）
+
+1. 下载源码：GitHub 仓库页面 **Code → Download ZIP** 解压，或 `git clone https://github.com/runcat-tommy/dsh-theme-manager.git`
+2. 用 `link:` 方式装入 profile：
+
+   ```sh
+   # 在插件源码目录外任意位置执行（路径写你的实际解压/克隆目录）
+   dsh plugin --profile web add link:D:/path/to/dsh-theme-manager
+   ```
+
+   或者手动编辑 `~/.dsh/profiles/web/package.json`：
+
+   ```jsonc
+   {
+     "dependencies": {
+       "dsh-theme-manager": "link:D:/path/to/dsh-theme-manager"
+     },
+     "dsh": {
+       "profile": {
+         "bundles": [/* …原有… */, "dsh-theme-manager"]
+       }
+     }
+   }
+   ```
+
+   然后在 `~/.dsh/profiles/web` 下执行 `pnpm install`。
+
+3. 重启 `dsh web`。
+
+## 使用
+
+1. 打开 **设置 → 主题管理器**。
+2. 左侧选第一层（中国 / 日本 / 节庆 / 通用氛围），右侧点某张风格卡片 **使用** → 界面立即换肤。
+3. 刷新页面风格保留；想回到默认，点底部 **恢复默认外观**，或在 **设置 → 外观** 行切换浅色 / 深色 / 跟随系统。
 
 ## 扩展新风格
 
@@ -95,18 +144,20 @@ token 名与语义参考 `@deepseek-ai/dsh-client-ui-theme` 的 `lib/styles/desi
 
 ```
 dsh-theme-manager/
-├── package.json          # dsh.client 声明（web 平台，纯浏览器插件）
-├── cordis.patch.yml      # bundle patch：注册一行 profile 条目
-├── README.md
+├── assets/                # 预览图（README 引用）
+├── package.json           # dsh.client 声明（web 平台，纯浏览器插件）
+├── cordis.patch.yml       # bundle patch：注册一行 profile 条目
+├── README.md              # 中文说明
+├── README.en.md           # 英文说明
 └── lib/
-    ├── index.js          # host 半部（no-op）
-    └── client.js         # 浏览器半部：风格定义 + 注册/恢复 + 两级选择 UI
+    ├── index.js           # host 半部（no-op）
+    └── client.js          # 浏览器半部：风格定义 + 注册/恢复 + 两级选择 UI
 ```
 
 ## 路线图
 
 - [x] 中国 · 水墨风格 / 日本 · 浮世绘风格（小样）
-- [x] 扩展至 20 套风格（中国 5 · 日本 5 · 节庆 3 · 通用氛围 7，含 6 套深色底版）
+- [x] 扩展至 20 套风格（中国 5 · 日本 5 · 节庆 3 · 通用氛围 7，含 7 套深色底版）
 - [ ] 风格列表配置化（JSON 定义，免改代码）
 - [ ] 每套风格支持 light / dark 双底版
 - [ ] 纹理增强（宣纸、金箔、波浪等背景图案）
