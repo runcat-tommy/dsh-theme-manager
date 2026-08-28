@@ -75,14 +75,20 @@ Restart `dsh web` afterwards.
 ### Option 3 — manual download / source install (development)
 
 1. Get the source: on the GitHub repo page use **Code → Download ZIP**, or `git clone https://github.com/runcat-tommy/dsh-theme-manager.git`
-2. Link it into the profile:
+2. Enter the source directory and install it directly:
 
    ```sh
-   # run from anywhere; point to your actual unpacked/cloned directory
-   dsh plugin --profile web add link:D:/path/to/dsh-theme-manager
+   cd dsh-theme-manager
+   dsh plugin --profile web add .
    ```
 
-   Or edit `~/.dsh/profiles/web/package.json` manually:
+   > `dsh plugin add .` resolves the current directory to an absolute path and installs it as a `file:` snapshot. For live development — where you want source edits to apply instantly — use the symlink form instead:
+
+   ```sh
+   dsh plugin --profile web add link:.
+   ```
+
+   Alternatively, edit `~/.dsh/profiles/web/package.json` manually:
 
    ```jsonc
    {

@@ -75,14 +75,20 @@ dsh plugin --profile web add dsh-theme-manager
 ### 方式三：下载源码手动安装（开发 / 调试）
 
 1. 下载源码：GitHub 仓库页面 **Code → Download ZIP** 解压，或 `git clone https://github.com/runcat-tommy/dsh-theme-manager.git`
-2. 用 `link:` 方式装入 profile：
+2. 进入源码目录，直接安装当前目录：
 
    ```sh
-   # 在插件源码目录外任意位置执行（路径写你的实际解压/克隆目录）
-   dsh plugin --profile web add link:D:/path/to/dsh-theme-manager
+   cd dsh-theme-manager
+   dsh plugin --profile web add .
    ```
 
-   或者手动编辑 `~/.dsh/profiles/web/package.json`：
+   > `dsh plugin add .` 会把当前目录解析为绝对路径（file: 快照）装入 profile。如果用于开发调试、希望改动源码即时生效，改用活链接形式：
+
+   ```sh
+   dsh plugin --profile web add link:.
+   ```
+
+   也可以手动编辑 `~/.dsh/profiles/web/package.json`：
 
    ```jsonc
    {
