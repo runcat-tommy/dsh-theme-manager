@@ -15,7 +15,9 @@ A two-level theme manager for the DeepSeek Harness Web UI: **pick a culture / sc
 
 ## Built-in styles
 
-**20 styles** are bundled (13 light-base · 7 dark-base):
+**40 styles** are bundled (20 culture / scene + 20 national flags; 33 light-base · 7 dark-base).
+
+**Culture / scene (layer 1: China / Japan / Festivals / General)**
 
 | Layer 1 | Style | Palette |
 |---|---|---|
@@ -41,6 +43,33 @@ A two-level theme manager for the DeepSeek Harness Web UI: **pick a culture / sc
 | General | Starry Night 🌙 | Deep blue-violet · starlight |
 
 > 🌙 = dark base (`colorScheme: "dark"`); the rest use a light base.
+
+**National flags (layer 1: Flags)**
+
+Two-color flags (Japan, Indonesia, Saudi Arabia, Switzerland, …) are handled by the `flagSpec()` generator: it derives every surface layer / label / border / state color from the flag's signature colors by tinting and shading.
+
+| Layer 1 | Style | Palette |
+|---|---|---|
+| Flags | United States | Stars & Stripes: navy · red · white |
+| Flags | China | Five-star red flag: red · gold |
+| Flags | Germany | Black · red · gold |
+| Flags | Japan | Rising sun: white · red |
+| Flags | India | Saffron · white · green · navy |
+| Flags | United Kingdom | Union Jack: navy · white · red |
+| Flags | France | Blue · white · red |
+| Flags | Italy | Green · white · red |
+| Flags | Canada | Maple leaf: red · white |
+| Flags | Brazil | Green · yellow · blue |
+| Flags | Russia | White · blue · red |
+| Flags | South Korea | Taegeukgi: white · red · blue · black |
+| Flags | Mexico | Green · white · red |
+| Flags | Australia | Southern Cross: navy · white · red |
+| Flags | Spain | Red · gold |
+| Flags | Indonesia | Red · white |
+| Flags | Turkey | Crescent: red · white |
+| Flags | Netherlands | Red · white · blue |
+| Flags | Saudi Arabia | Green · white |
+| Flags | Switzerland | Cross: red · white |
 
 ## Installation
 
@@ -163,7 +192,8 @@ dsh-theme-manager/
 ## Roadmap
 
 - [x] Ink Wash (China) / Ukiyo-e (Japan) sample
-- [x] Expanded to 20 styles (China 5 · Japan 5 · Festivals 3 · General 7, incl. 7 dark-base)
+- [x] Expanded to 20 culture / scene styles (China 5 · Japan 5 · Festivals 3 · General 7, incl. 7 dark-base)
+- [x] Flag series: 20 countries (two-color flags get their full palette derived by tint/shade)
 - [ ] Configurable style list (JSON-defined, no code changes)
 - [ ] light / dark dual-base for every style
 - [ ] Texture enhancement (rice paper, gilded foil, wave patterns, …)
