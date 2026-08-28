@@ -1,0 +1,112 @@
+# dsh-theme-manager
+
+两级式主题管理器（DeepSeek Harness Web 插件）：**先选文化 / 场景，再选具体风格**。
+
+当前内置 **20 套风格**（浅色底 13 套 · 深色底 7 套）：
+
+| 第一层 | 第二层 | 配色意象 |
+|---|---|---|
+| 中国 | 水墨风格 | 宣纸白底 · 墨黑主色 · 朱砂红点缀 |
+| 中国 | 苏州园林风格 | 粉墙黛瓦 · 青灰 · 竹绿 |
+| 中国 | 故宫宫墙风格 | 朱红宫墙 · 鎏金点缀 |
+| 中国 | 青绿山水风格 | 石青 · 石绿 · 赭石（千里江山图） |
+| 中国 | 国潮霓虹风格 🌙 | 中国红 · 荧光青 · 墨夜 |
+| 日本 | 浮世绘风格 | 和纸米底 · 群青主色 · 赭红与芥子黄点缀 |
+| 日本 | 侘寂和风 | 低饱和米灰 · 枯山水禅意 |
+| 日本 | 樱花花见风格 | 樱粉 · 素白 · 嫩芽绿 |
+| 日本 | 江户夜行风格 🌙 | 深靛夜空 · 灯笼暖橙 |
+| 日本 | 东京霓虹风格 🌙 | 霓虹粉 · 电光青 |
+| 节庆 | 红黄吉庆风格 | 中国红 · 金黄 · 金箔 |
+| 节庆 | 圣诞风格 | 松树绿 · 圣诞红 · 金 |
+| 节庆 | 万圣夜风格 🌙 | 暗紫 · 南瓜橙 · 黑 |
+| 通用氛围 | 赛博朋克风格 🌙 | 霓虹粉紫 · 电光青 · 深黑 |
+| 通用氛围 | 暗夜极简风格 🌙 | 纯黑灰 · 高对比 |
+| 通用氛围 | 森林自然风格 | 墨绿 · 苔绿 · 米白 |
+| 通用氛围 | 海洋清凉风格 | 海蓝 · 白 · 青 |
+| 通用氛围 | 莫兰迪低饱和 | 灰调柔和 · 高级感 |
+| 通用氛围 | 复古胶片风格 | 暖棕 · 褪色黄 |
+| 通用氛围 | 星空夜色风格 🌙 | 深蓝紫 · 星光白 |
+
+> 🌙 = 深色底版（`colorScheme: "dark"`）；其余为浅色底版。
+
+## 功能
+
+- **两级选择 UI**：设置 → 主题管理器（`settings.section` 新页面），左侧第一层列表 + 右侧第二层风格卡片（含配色色卡预览）。
+- **实时生效**：每套风格通过 `theme` 服务 `register()` 注册为真正的主题（`--dsw-alias-*` token 覆盖），点「使用」立即切换，无需刷新；同时也会出现在「设置 → 外观」行的额外色块中。
+- **选择记忆**：当前风格保存在本浏览器 localStorage（`dsh.themeManager.active`），刷新/重开自动恢复；在「外观」行切回内置浅色 / 深色 / 跟随系统时自动清除。
+- **中英双语**：文案跟随界面语言（`locale` 服务，zh / en）。
+
+## 安装（开发期，link 方式）
+
+在 `~/.dsh/profiles/web` 下：
+
+```jsonc
+// package.json
+"dependencies": {
+  "dsh-theme-manager": "link:D:/workspace_deepseek_harness2/secondary_development/dsh-theme-manager"
+},
+"dsh": {
+  "profile": {
+    "bundles": [ /* …原有… */, "dsh-theme-manager" ]
+  }
+}
+```
+
+```sh
+pnpm install
+```
+
+重启 `dsh web` 后打开 **设置 → 主题管理器**。
+
+## 扩展新风格
+
+在 `lib/client.js` 的 `STYLES` 数组中加一项（并补 `CATEGORIES`、`zh` / `en` 文案）。风格用紧凑 `spec`（约 30 个核心色值）声明，`palette()` 会自动展开成完整 `--dsw-alias-*` token 表：
+
+```js
+{
+  id: "suzhou-garden",          // 唯一 id（不能与内置 light/dark/system 冲突）
+  category: "china",            // 归属的第一层
+  colorScheme: "light",         // 绑定的底版（"light" 或 "dark"）
+  labelKey: "style.suzhouGarden",
+  descKey: "style.suzhouGardenDesc",
+  swatch: ["#…", "#…", "#…", "#…"],   // 卡片预览色卡（base / layer2 / brand / label1）
+  spec: {
+    base: "#f4f1e8", layer1: "#faf7ef", layer2: "#efead9", layer3: "#e5dec8",
+    overlay: "#fdfbf4", platform: "#efe9d7",
+    label1: "#2f2f2a", label2: "#56544a", label3: "#7d7a6c", dimmed: "#a9a491",
+    onDark: "#faf7ef",              // 主按钮上的文字色（浅色底给近白，深色底给近黑）
+    brand: "#4a7c59",
+    btnPrimary: "#2f2f2a", btnPrimaryHover: "#46443c", btnPrimaryDimmed: "#e2dcc6",
+    btnInfo: "#4a7c59", btnInfoHover: "#5b8f6a",
+    brandTertiary: "#dce6d4",
+    error: "#a34a32", error2: "#c05a3e",
+    success: "#3f7a4e", success2: "#55906a", success3: "#dce8d2",
+    warn: "#a8762e", warn2: "#c2913f", warn3: "#f0e3c2", warnLabel: "#8a5f1f",
+    bubble: "#e8e2cf", bubbleHi: "#dcd4b8",
+    sidebar: "#eee9d8", sidebarActive: "#e3dcc4", sidebarAccent: "#c6bb97", sidebarHover: "#e9e3cf",
+    toast: "#2f2f2a"
+  }
+}
+```
+
+token 名与语义参考 `@deepseek-ai/dsh-client-ui-theme` 的 `lib/styles/design-platform.css`（别名层）。
+
+## 结构
+
+```
+dsh-theme-manager/
+├── package.json          # dsh.client 声明（web 平台，纯浏览器插件）
+├── cordis.patch.yml      # bundle patch：注册一行 profile 条目
+├── README.md
+└── lib/
+    ├── index.js          # host 半部（no-op）
+    └── client.js         # 浏览器半部：风格定义 + 注册/恢复 + 两级选择 UI
+```
+
+## 路线图
+
+- [x] 中国 · 水墨风格 / 日本 · 浮世绘风格（小样）
+- [x] 扩展至 20 套风格（中国 5 · 日本 5 · 节庆 3 · 通用氛围 7，含 6 套深色底版）
+- [ ] 风格列表配置化（JSON 定义，免改代码）
+- [ ] 每套风格支持 light / dark 双底版
+- [ ] 纹理增强（宣纸、金箔、波浪等背景图案）
