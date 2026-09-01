@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0 (2026-09-01)
+## 1.1.0 (2026-09-01)
 
 ### Added
 
@@ -11,11 +11,17 @@
 - **Rollback**: the previous install source is recorded automatically; go back to the previous version in one click
 - **Host half** (`lib/index.js`): updater routes `info / update / rollback / restart` (loopback + Origin checked; spec whitelist allows only dsh-theme-manager itself)
 - Settings page footer: plugin version row with check / update / ignore / ignored-version management / failed-update warnings
+- Added `test/` (host route-guard tests + client smoke test)
 
 ### Changed
 
-- Version 0.2.0 → 0.3.0 (feature, minor)
-- Added `test/` (host route-guard tests + client smoke test)
+- Version 0.2.0 → 1.1.0 (major version line: Theme Manager enters the 1.x stable line; feature bump)
+- Built-in styles remain at 40
+
+### Release
+
+- Source: https://github.com/runcat-tommy/dsh-theme-manager
+- npm: https://www.npmjs.com/package/dsh-theme-manager
 
 ## 0.2.0 (2026-08-28)
 

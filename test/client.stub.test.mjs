@@ -98,12 +98,12 @@ async function main() {
   console.log("client stub: test 1 passed (boot + registry check + cache)");
 
   // --- test 2: stale pending version (update did not take effect) ---
-  const store2 = new Map([["dsh.themeManager.update.pending", "0.5.0"]]); // newer than current → failed
+  const store2 = new Map([["dsh.themeManager.update.pending", "2.0.0"]]); // newer than current → failed
   const fetchLog2 = [];
   const counters2 = { themeRegister: 0, localeRegister: 0 };
   const r2 = runFactory({ store: store2, fetchLog: fetchLog2, counters: counters2 });
   r2.exportsOut.apply(makeCtx(counters2));
-  assert.equal(r2.localStorage.getItem("dsh.themeManager.update.pending"), "0.5.0", "pending newer than current must stay");
+  assert.equal(r2.localStorage.getItem("dsh.themeManager.update.pending"), "2.0.0", "pending newer than current must stay");
   console.log("client stub: test 2 passed (stale pending retained)");
 
   console.log("client stub: all tests passed");

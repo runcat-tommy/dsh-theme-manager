@@ -1,6 +1,6 @@
 # dsh-theme-manager — Update Reminder Design
 
-> Design decisions behind the v0.3.0 "update reminder" feature, matching the implementation.
+> Design decisions behind the v1.1.0 "update reminder" feature, matching the implementation.
 
 ## 1. Goals
 

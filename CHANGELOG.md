@@ -1,6 +1,6 @@
 # 更新日志
 
-## 0.3.0 (2026-09-01)
+## 1.1.0 (2026-09-01)
 
 ### 新增
 
@@ -11,11 +11,17 @@
 - **回滚**：自动记录更新前安装来源，一键回到上一个版本
 - **host 半部**（`lib/index.js`）：新增更新服务路由 `info / update / rollback / restart`（仅 loopback + Origin 校验，spec 白名单仅允许 dsh-theme-manager 自身）
 - 设置页底部新增插件版本行：检查更新 / 更新 / 忽略 / 已忽略版本管理 / 更新失败警示
+- 新增 `test/`（host 路由守卫测试 + client 冒烟测试）
 
 ### 变更
 
-- 版本 0.2.0 → 0.3.0（新功能，minor）
-- 新增 `test/`（host 路由守卫测试 + client 冒烟测试）
+- 版本 0.2.0 → 1.1.0（重大版本号调整：主题管理器进入 1.x 稳定线，新功能 minor）
+- 内置风格总数保持 40 套不变
+
+### 发布
+
+- 源码：https://github.com/runcat-tommy/dsh-theme-manager
+- npm：https://www.npmjs.com/package/dsh-theme-manager
 
 ## 0.2.0 (2026-08-28)
 

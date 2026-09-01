@@ -210,7 +210,7 @@ dsh-theme-manager/
 - [x] Ink Wash (China) / Ukiyo-e (Japan) sample
 - [x] Expanded to 20 culture / scene styles (China 5 · Japan 5 · Festivals 3 · General 7, incl. 7 dark-base)
 - [x] Flag series: 20 countries (two-color flags get their full palette derived by tint/shade)
-- [x] Update reminders (v0.3.0: npm version check + one-click update / ignore / rollback + host half)
+- [x] Update reminders (v1.1.0: npm version check + one-click update / ignore / rollback + host half)
 - [ ] Configurable style list (JSON-defined, no code changes)
 - [ ] light / dark dual-base for every style
 - [ ] Texture enhancement (rice paper, gilded foil, wave patterns, …)
