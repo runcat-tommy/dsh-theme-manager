@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.2.0 (2026-09-01)
+
+### Added
+
+- **8 developer themes**: new layer-1 category "Developer" — faithful dark themes from official palettes: Catppuccin Mocha, Dracula, Tokyo Night, Nord, Gruvbox, One Dark, Solarized Dark, Ayu Mirage
+- **2 Chinese classics**: Blue-and-white Porcelain (white glaze · cobalt blue · gilded accents) and Dunhuang Flying Apsaras (mural ochre-red · malachite green · lapis · earth yellow)
+- **DeepSeek Deep Blue**: custom palette built on the DeepSeek brand color #4D6BFE, under General
+- Built-in styles: 40 → 51 (light-base 33 → 36, dark-base 7 → 15)
+
+### Changed
+
+- Version 1.1.0 → 1.2.0 (feature, minor)
+- package.json description and both README style tables updated
+
+### Release
+
+- Source: https://github.com/runcat-tommy/dsh-theme-manager
+- npm: https://www.npmjs.com/package/dsh-theme-manager
+
 ## 1.1.0 (2026-09-01)
 
 ### Added

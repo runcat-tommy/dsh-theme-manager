@@ -1,5 +1,24 @@
 # 更新日志
 
+## 1.2.0 (2026-09-01)
+
+### 新增
+
+- **开发者主题 8 套**：新增第一层「开发者」，全部为官方色板高还原深色主题——Catppuccin Mocha、Dracula（德古拉）、Tokyo Night（东京之夜）、Nord（北极冰川）、Gruvbox（复古暖黄）、One Dark、Solarized Dark、Ayu Mirage
+- **中国经典扩展 2 套**：青花瓷风格（白瓷釉底 · 钴蓝纹样 · 描金点缀）、敦煌飞天风格（壁画土红 · 石绿 · 青金 · 土黄）
+- **DeepSeek 深海蓝**：以 DeepSeek 品牌主色 #4D6BFE 定制，放「通用氛围」
+- 内置风格总数 40 → 51（浅色底 33 → 36，深色底 7 → 15）
+
+### 变更
+
+- 版本 1.1.0 → 1.2.0（新功能，minor）
+- package.json description 与 README 双版本风格总表同步更新
+
+### 发布
+
+- 源码：https://github.com/runcat-tommy/dsh-theme-manager
+- npm：https://www.npmjs.com/package/dsh-theme-manager
+
 ## 1.1.0 (2026-09-01)
 
 ### 新增

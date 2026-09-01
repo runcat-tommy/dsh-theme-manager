@@ -87,7 +87,7 @@ async function main() {
   assert.equal(typeof r1.exportsOut.apply, "function");
   assert.deepEqual(r1.exportsOut.inject, ["slots", "locale", "theme"]);
   r1.exportsOut.apply(makeCtx(counters1)); // must not throw in a DOM-less env
-  assert.equal(counters1.themeRegister, 40, "all 40 themes should still register");
+  assert.equal(counters1.themeRegister, 51, "all 51 themes should still register");
   assert.ok(counters1.localeRegister >= 1, "dictionaries should register");
   assert.equal(r1.localStorage.getItem("dsh.themeManager.update.pending"), null, "pending equal to current should be cleared");
   // Wait past the 2s boot check timer, then the registry result must be cached.

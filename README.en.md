@@ -16,7 +16,7 @@ A two-level theme manager for the DeepSeek Harness Web UI: **pick a culture / sc
 
 ## Built-in styles
 
-**40 styles** are bundled (20 culture / scene + 20 national flags; 33 light-base · 7 dark-base).
+**51 styles** are bundled (22 culture / scene + 8 developer + 20 national flags; 36 light-base · 15 dark-base).
 
 **Culture / scene (layer 1: China / Japan / Festivals / General)**
 
@@ -27,6 +27,8 @@ A two-level theme manager for the DeepSeek Harness Web UI: **pick a culture / sc
 | China | Forbidden City | Vermilion walls · gilded accents |
 | China | Azure Landscape | Mineral blue · malachite green · ochre |
 | China | Guochao Neon 🌙 | China red · neon cyan on ink night |
+| China | Blue-and-white Porcelain | White glaze · cobalt blue · gilded accents |
+| China | Dunhuang Flying Apsaras | Mural ochre-red · malachite green · lapis · earth yellow |
 | Japan | Ukiyo-e | Washi ivory · ultramarine primary · ochre-red & mustard |
 | Japan | Wabi-sabi | Muted rice-grey · zen minimalism |
 | Japan | Sakura | Cherry-blossom pink · white · fresh green |
@@ -42,8 +44,24 @@ A two-level theme manager for the DeepSeek Harness Web UI: **pick a culture / sc
 | General | Morandi | Soft muted greys |
 | General | Retro Film | Warm brown · faded amber |
 | General | Starry Night 🌙 | Deep blue-violet · starlight |
+| General | DeepSeek Deep Blue | Sea-mist white · deep-sea blue · teal accents |
 
 > 🌙 = dark base (`colorScheme: "dark"`); the rest use a light base.
+
+**Developer (layer 1: Developer)**
+
+Faithful dark themes from official palettes (great for coding / long sessions):
+
+| Layer 1 | Style | Palette |
+|---|---|---|
+| Developer | Catppuccin Mocha 🌙 | Mauve · midnight navy · cream |
+| Developer | Dracula 🌙 | Deep purple-black · violet-pink · emerald accents |
+| Developer | Tokyo Night 🌙 | Indigo night · electric blue · neon cyan |
+| Developer | Nord 🌙 | Polar night · glacier frost · aurora green |
+| Developer | Gruvbox 🌙 | Warm black · wheat yellow · retro orange |
+| Developer | One Dark 🌙 | Slate grey · electric blue · muted syntax colors |
+| Developer | Solarized Dark 🌙 | Deep teal-black · scientific cyan-blue · restrained |
+| Developer | Ayu Mirage 🌙 | Dune blue-grey · sky blue · soft teal |
 
 **National flags (layer 1: Flags)**
 
@@ -211,6 +229,7 @@ dsh-theme-manager/
 - [x] Expanded to 20 culture / scene styles (China 5 · Japan 5 · Festivals 3 · General 7, incl. 7 dark-base)
 - [x] Flag series: 20 countries (two-color flags get their full palette derived by tint/shade)
 - [x] Update reminders (v1.1.0: npm version check + one-click update / ignore / rollback + host half)
+- [x] 8 developer themes (Catppuccin / Dracula / Tokyo Night / Nord / Gruvbox / One Dark / Solarized / Ayu) + Blue-and-white Porcelain / Dunhuang + DeepSeek Deep Blue (v1.2.0: 51 styles)
 - [ ] Configurable style list (JSON-defined, no code changes)
 - [ ] light / dark dual-base for every style
 - [ ] Texture enhancement (rice paper, gilded foil, wave patterns, …)
