@@ -12,6 +12,7 @@ English: [README.en.md](README.en.md)
 - **实时生效**：每套风格通过 `theme` 服务 `register()` 注册为真正的主题（`--dsw-alias-*` token 覆盖），点「使用」立即切换，无需刷新；同时也会出现在「设置 → 外观」行的额外色块中。
 - **选择记忆**：当前风格保存在本浏览器 localStorage（`dsh.themeManager.active`），刷新/重开自动恢复；在「外观」行切回内置浅色 / 深色 / 跟随系统时自动清除。
 - **中英双语**：文案跟随界面语言（`locale` 服务，zh / en）。
+- **更新提醒**：启动时与每 6 小时自动检查一次 npm 最新版本；发现新版本时右下角弹一次性 toast + 常驻气泡，设置页内可**一键更新 / 忽略本版本 / 稍后提醒**。npm 与 GitHub 安装方式支持一键更新（host 半部通过 `dsh plugin` 安装并自动重启），开发链接安装（link:）只给更新指引。
 
 ## 内置风格
 
@@ -142,6 +143,18 @@ dsh plugin --profile web add dsh-theme-manager
 2. 左侧选第一层（中国 / 日本 / 节庆 / 通用氛围），右侧点某张风格卡片 **使用** → 界面立即换肤。
 3. 刷新页面风格保留；想回到默认，点底部 **恢复默认外观**，或在 **设置 → 外观** 行切换浅色 / 深色 / 跟随系统。
 
+## 更新提醒
+
+启动后自动检查 npm 最新版本（每 6 小时一次，手动可在设置页底部点 **检查更新**）。发现新版本时：
+
+1. 右下角弹出一次性 **toast**（可点「查看」进入更新对话框），常驻 **气泡** 会保留直到处理或忽略。
+2. 更新对话框展示版本对比与更新内容，支持 **忽略本版本 / 稍后提醒（24 小时）/ 更新**。
+3. **更新**：npm 安装方式精确安装 `dsh-theme-manager@新版本`，GitHub 安装方式解析最新 commit 后按 SHA 固定安装；安装过程实时显示进度与日志，完成后提示重启（允许自动重启的环境一键重启，否则给出手动步骤）。
+4. 重启后启动时校验目标版本是否生效，成功弹出「已更新到 vX.Y.Z」，失败则在设置页给出重试 / 回滚入口。
+5. **回滚**：自动记录更新前的安装来源，可一键回到上一个版本。
+
+> 开发链接安装（link:）与纯手动安装无法一键更新，会给出对应指引（link: 请到源码目录更新源码后重启）。
+
 ## 扩展新风格
 
 在 `lib/client.js` 的 `STYLES` 数组中加一项（并补 `CATEGORIES`、`zh` / `en` 文案）。风格用紧凑 `spec`（约 30 个核心色值）声明，`palette()` 会自动展开成完整 `--dsw-alias-*` token 表：
@@ -180,13 +193,16 @@ token 名与语义参考 `@deepseek-ai/dsh-client-ui-theme` 的 `lib/styles/desi
 ```
 dsh-theme-manager/
 ├── assets/                # 预览图（README 引用）
-├── package.json           # dsh.client 声明（web 平台，纯浏览器插件）
+├── package.json           # dsh.client 声明（web 平台：浏览器半部 + host 半部）
 ├── cordis.patch.yml       # bundle patch：注册一行 profile 条目
 ├── README.md              # 中文说明
 ├── README.en.md           # 英文说明
+├── DESIGN.md              # 更新提醒功能设计（中）
+├── DESIGN.en.md           # 更新提醒功能设计（英）
+├── test/                  # host 路由守卫测试 + client 冒烟测试（node --test "test/*.test.mjs"）
 └── lib/
-    ├── index.js           # host 半部（no-op）
-    └── client.js          # 浏览器半部：风格定义 + 注册/恢复 + 两级选择 UI
+    ├── index.js           # host 半部：更新服务路由（info / update / rollback / restart）
+    └── client.js          # 浏览器半部：风格定义 + 注册/恢复 + 两级选择 UI + 更新提醒 UI
 ```
 
 ## 路线图
@@ -194,6 +210,7 @@ dsh-theme-manager/
 - [x] 中国 · 水墨风格 / 日本 · 浮世绘风格（小样）
 - [x] 扩展至 20 套文化 / 场景风格（中国 5 · 日本 5 · 节庆 3 · 通用氛围 7，含 7 套深色底版）
 - [x] 国旗系列 20 套（两色国旗通过色调派生补齐层级）
+- [x] 更新提醒（v0.3.0：npm 版本检查 + 一键更新 / 忽略 / 回滚 + host 半部）
 - [ ] 风格列表配置化（JSON 定义，免改代码）
 - [ ] 每套风格支持 light / dark 双底版
 - [ ] 纹理增强（宣纸、金箔、波浪等背景图案）

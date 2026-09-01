@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.3.0 (2026-09-01)
+
+### Added
+
+- **Update reminders**: checks npm for a newer version on boot and every 6 hours; a one-time toast and a persistent pill appear bottom-right
+- **One-click update**: the dialog shows the version diff and changelog; npm installs pin `dsh-theme-manager@<version>`, GitHub installs resolve the latest commit and pin its SHA; progress and the install log stream live
+- **Ignore / remind later**: ignore this version (no more reminders, restorable from settings) or snooze for 24 hours
+- **Restart & verification**: one-click restart where auto-restart is allowed (port-ready helper + detached relaunch); on boot the pending target version is verified — success is announced, failure surfaces retry / rollback
+- **Rollback**: the previous install source is recorded automatically; go back to the previous version in one click
+- **Host half** (`lib/index.js`): updater routes `info / update / rollback / restart` (loopback + Origin checked; spec whitelist allows only dsh-theme-manager itself)
+- Settings page footer: plugin version row with check / update / ignore / ignored-version management / failed-update warnings
+
+### Changed
+
+- Version 0.2.0 → 0.3.0 (feature, minor)
+- Added `test/` (host route-guard tests + client smoke test)
+
 ## 0.2.0 (2026-08-28)
 
 ### Added

@@ -12,6 +12,7 @@ A two-level theme manager for the DeepSeek Harness Web UI: **pick a culture / sc
 - **Applies live**: every style is registered as a real theme through the `theme` service (`--dsw-alias-*` token overrides) — click *Apply* and the UI re-skins instantly, no refresh. The styles also appear as extra color cubes in the built-in **Appearance** row.
 - **Remembered**: the active style is kept in the browser's localStorage (`dsh.themeManager.active`) and restored on reload; switching back to a built-in appearance (Light / Dark / System) clears it.
 - **Bilingual**: copy follows the UI language via the `locale` service (zh / en).
+- **Update reminders**: checks npm for a newer version on boot and every 6 hours; a one-time toast and a persistent pill appear bottom-right, and the settings page offers **one-click update / ignore this version / remind me later**. npm and GitHub installs can update in one click (the host half runs `dsh plugin` and restarts automatically); development `link:` installs get guidance instead.
 
 ## Built-in styles
 
@@ -142,6 +143,18 @@ Restart `dsh web` afterwards.
 2. Pick a layer-1 category on the left (China / Japan / Festivals / General), then click **Apply** on a style card — the UI re-skins instantly.
 3. The choice survives a page reload; to go back to the default, click **Restore default appearance** at the bottom, or switch Light / Dark / System in the **Appearance** row.
 
+## Update reminders
+
+The plugin checks npm for the latest version on boot and every 6 hours (or hit **Check for updates** at the bottom of the settings page). When a newer version is found:
+
+1. A one-time **toast** appears bottom-right (click *View* to open the update dialog); a persistent **pill** stays until handled or ignored.
+2. The dialog shows the version diff and changelog, with **Ignore this version / Remind me later (24 h) / Update**.
+3. **Update**: npm installs pin `dsh-theme-manager@<new version>`; GitHub installs resolve the latest commit and pin its SHA. Progress and the install log stream live, then the dialog offers a restart (one-click where auto-restart is allowed, manual steps otherwise).
+4. On boot after the restart, the pending target version is verified: success shows "Updated to vX.Y.Z", failure surfaces retry / rollback in the settings page.
+5. **Rollback**: the previous install source is recorded automatically, so you can go back to the previous version in one click.
+
+> Development `link:` installs and fully manual installs cannot update in one click — the dialog explains what to do instead (for `link:`, update the source and restart).
+
 ## Adding a new style
 
 Append an entry to the `STYLES` array in `lib/client.js` (and add `CATEGORIES` plus `zh` / `en` copy). Each style declares a compact `spec` (~30 core colors); `palette()` expands it into the full `--dsw-alias-*` token map:
@@ -180,13 +193,16 @@ Token names and semantics follow the alias layer of `@deepseek-ai/dsh-client-ui-
 ```
 dsh-theme-manager/
 ├── assets/                # preview images (referenced by the READMEs)
-├── package.json           # dsh.client declaration (web platform, browser-only plugin)
+├── package.json           # dsh.client declaration (web platform: browser half + host half)
 ├── cordis.patch.yml       # bundle patch: contributes one profile row
 ├── README.md              # Chinese docs
 ├── README.en.md           # English docs
+├── DESIGN.md              # update-reminder design doc (zh)
+├── DESIGN.en.md           # update-reminder design doc (en)
+├── test/                  # host route-guard tests + client smoke test (node --test "test/*.test.mjs")
 └── lib/
-    ├── index.js           # host half (no-op)
-    └── client.js          # browser half: style definitions + registration/restore + picker UI
+    ├── index.js           # host half: updater routes (info / update / rollback / restart)
+    └── client.js          # browser half: styles + registration/restore + picker UI + update-reminder UI
 ```
 
 ## Roadmap
@@ -194,6 +210,7 @@ dsh-theme-manager/
 - [x] Ink Wash (China) / Ukiyo-e (Japan) sample
 - [x] Expanded to 20 culture / scene styles (China 5 · Japan 5 · Festivals 3 · General 7, incl. 7 dark-base)
 - [x] Flag series: 20 countries (two-color flags get their full palette derived by tint/shade)
+- [x] Update reminders (v0.3.0: npm version check + one-click update / ignore / rollback + host half)
 - [ ] Configurable style list (JSON-defined, no code changes)
 - [ ] light / dark dual-base for every style
 - [ ] Texture enhancement (rice paper, gilded foil, wave patterns, …)
