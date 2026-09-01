@@ -4,6 +4,19 @@
   "version": "0.2.0",
   "type": "module",
   "main": "lib/index.js",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "theme",
+    "theme-manager",
+    "themes",
+    "ui-theme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/runcat-tommy/dsh-theme-manager.git"
+  },
   "exports": {
     ".": {
       "default": "./lib/index.js"
@@ -30,7 +43,11 @@
   },
   "files": [
     "cordis.patch.yml",
-    "lib"
+    "lib",
+    "CHANGELOG.md",
+    "CHANGELOG.en.md",
+    "README.md",
+    "README.en.md"
   ],
   "license": "MIT"
 }
