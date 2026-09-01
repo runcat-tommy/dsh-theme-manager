@@ -39,6 +39,12 @@
         "@deepseek-ai/dsh-client-ui-settings",
         "@deepseek-ai/dsh-client-ui-theme"
       ]
+    },
+    "marketplace": {
+      "profiles": ["web"],
+      "requiresBuildApproval": false,
+      "requiresRestart": true,
+      "manualSteps": false
     }
   },
   "files": [
