@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.3.0 (2026-09-03)
+
+### Added
+
+- **7 high-contrast themes**: new layer-1 category "High Contrast" — bold complementary / high-saturation pairings (a near-black or near-white neutral base carries the UI while loud accents hit buttons and highlights): Black & Gold, Red & Black, Yellow & Black, Pink & Black, Acid Green, Teal & Orange (6 dark-base) + Mondrian (light-base, primary red-yellow-blue blocks)
+- Built-in styles: 51 → 58 (light-base 36 → 37, dark-base 15 → 21)
+
+### Fixed
+
+- The "High Contrast" category was missing from the layer-1 navigation (styles registered but the CATEGORIES list had no entry) — added the `contrast` row
+- `test/integrity-check.mjs` now asserts every style category exists in CATEGORIES (prevents registered-but-unreachable themes)
+
+### Changed
+
+- Version 1.2.0 → 1.3.0 (feature, minor)
+- package.json description and both README style tables / roadmap updated
+
+### Release
+
+- Source: https://github.com/runcat-tommy/dsh-theme-manager
+- npm: https://www.npmjs.com/package/dsh-theme-manager
+
 ## 1.2.0 (2026-09-01)
 
 ### Added

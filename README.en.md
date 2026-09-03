@@ -16,7 +16,7 @@ A two-level theme manager for the DeepSeek Harness Web UI: **pick a culture / sc
 
 ## Built-in styles
 
-**51 styles** are bundled (22 culture / scene + 8 developer + 20 national flags; 36 light-base · 15 dark-base).
+**58 styles** are bundled (23 culture / scene + 8 developer + 7 high-contrast + 20 national flags; 37 light-base · 21 dark-base).
 
 **Culture / scene (layer 1: China / Japan / Festivals / General)**
 
@@ -62,6 +62,20 @@ Faithful dark themes from official palettes (great for coding / long sessions):
 | Developer | One Dark 🌙 | Slate grey · electric blue · muted syntax colors |
 | Developer | Solarized Dark 🌙 | Deep teal-black · scientific cyan-blue · restrained |
 | Developer | Ayu Mirage 🌙 | Dune blue-grey · sky blue · soft teal |
+
+**High Contrast (layer 1: High Contrast)**
+
+Bold complementary / high-saturation pairings: a near-black or near-white neutral base carries the UI while loud accents hit buttons and highlights — striking contrast without eye strain:
+
+| Layer 1 | Style | Palette |
+|---|---|---|
+| High Contrast | Black & Gold 🌙 | Obsidian black · gilded gold · candle-light text |
+| High Contrast | Red & Black 🌙 | Ink black · signal red · pure-white secondary |
+| High Contrast | Yellow & Black 🌙 | Obsidian black · safety yellow · monochrome secondary |
+| High Contrast | Pink & Black 🌙 | Obsidian black · hot pink · pure-white secondary |
+| High Contrast | Acid Green 🌙 | Dark green-black · acid lime · mint teal |
+| High Contrast | Teal & Orange 🌙 | Ink teal · flame orange · electric teal secondary |
+| High Contrast | Mondrian | Off-white · primary red-yellow-blue blocks · black grid |
 
 **National flags (layer 1: Flags)**
 
@@ -230,6 +244,7 @@ dsh-theme-manager/
 - [x] Flag series: 20 countries (two-color flags get their full palette derived by tint/shade)
 - [x] Update reminders (v1.1.0: npm version check + one-click update / ignore / rollback + host half)
 - [x] 8 developer themes (Catppuccin / Dracula / Tokyo Night / Nord / Gruvbox / One Dark / Solarized / Ayu) + Blue-and-white Porcelain / Dunhuang + DeepSeek Deep Blue (v1.2.0: 51 styles)
+- [x] High-contrast series of 7 (Black & Gold / Red & Black / Yellow & Black / Pink & Black / Acid Green / Teal & Orange / Mondrian) (v1.3.0: 58 styles)
 - [ ] Configurable style list (JSON-defined, no code changes)
 - [ ] light / dark dual-base for every style
 - [ ] Texture enhancement (rice paper, gilded foil, wave patterns, …)

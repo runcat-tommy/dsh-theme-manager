@@ -1,5 +1,27 @@
 # 更新日志
 
+## 1.3.0 (2026-09-03)
+
+### 新增
+
+- **强烈对比系列 7 套**：新增第一层「强烈对比」，大胆互补 / 高饱和配色（近黑 / 近白中性底承载 + 高饱和主色打在按钮与强调上）——黑金对比、红黑对比、黄黑警示、粉黑对比、荧光绿酸、青橙互补（6 套深色底）+ 蒙德里安（浅色底，红黄蓝原色块）
+- 内置风格总数 51 → 58（浅色底 36 → 37，深色底 15 → 21）
+
+### 修复
+
+- 「强烈对比」分类未出现在第一层导航（STYLES 已注册但 CATEGORIES 缺入口）——补上 `contrast` 分类行
+- `test/integrity-check.mjs` 新增断言：任何 style 的 category 必须存在于 CATEGORIES（防止主题注册了却在选择器里不可达）
+
+### 变更
+
+- 版本 1.2.0 → 1.3.0（新功能，minor）
+- package.json description 与 README 双版本风格总表 / 路线图同步更新
+
+### 发布
+
+- 源码：https://github.com/runcat-tommy/dsh-theme-manager
+- npm：https://www.npmjs.com/package/dsh-theme-manager
+
 ## 1.2.0 (2026-09-01)
 
 ### 新增

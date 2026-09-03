@@ -22,3 +22,14 @@ const cats = [...src.matchAll(/category: "([a-z]+)"/g)].map((m) => m[1]);
 const byCat = {};
 for (const c of cats) byCat[c] = (byCat[c] || 0) + 1;
 console.log("by category:", JSON.stringify(byCat));
+
+// Every style category must have a first-layer entry in CATEGORIES, else its
+// themes register but are unreachable from the picker.
+const catListBlock = src.match(/var CATEGORIES = \[([\s\S]*?)\n\s*\];/);
+if (!catListBlock) { console.error("could not locate CATEGORIES"); process.exit(1); }
+const catList = [...catListBlock[1].matchAll(/id: "([a-z]+)"/g)].map((m) => m[1]);
+const orphanCats = [...new Set(cats)].filter((c) => !catList.includes(c));
+console.log("CATEGORIES entries:", JSON.stringify(catList));
+console.log("style categories missing from CATEGORIES:",
+  orphanCats.length ? orphanCats : "none");
+if (orphanCats.length) process.exit(1);

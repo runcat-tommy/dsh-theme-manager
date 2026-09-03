@@ -1,7 +1,7 @@
 {
   "name": "dsh-theme-manager",
-  "description": "Two-level theme manager for DeepSeek Harness Web: pick a culture/scene, a national flag, or a developer palette first, then a style (51 built-in: China·Ink Wash, Japan·Ukiyo-e, Developer·Catppuccin, Flags·USA, …). 两级主题管理器：先选文化/场景、国旗或开发者配色，再选风格（内置 51 套：中国·水墨、日本·浮世绘、开发者·Catppuccin、国旗·美国…）。",
-  "version": "1.2.0",
+  "description": "Two-level theme manager for DeepSeek Harness Web: pick a culture/scene, a national flag, a developer palette, or a bold high-contrast pairing first, then a style (58 built-in: China·Ink Wash, Japan·Ukiyo-e, Developer·Catppuccin, High Contrast·Black & Gold, Flags·USA, …). 两级主题管理器：先选文化/场景、国旗、开发者配色或强烈对比配色，再选风格（内置 58 套：中国·水墨、日本·浮世绘、开发者·Catppuccin、强烈对比·黑金、国旗·美国…）。",
+  "version": "1.3.0",
   "type": "module",
   "main": "lib/index.js",
   "keywords": [
